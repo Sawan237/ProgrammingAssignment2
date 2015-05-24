@@ -36,4 +36,20 @@ list(set = set, get = get,
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
+        
+inv <- x$getInverse()
+
+if(!is.null(inv)) {
+                message("getting cached data")
+                return(inv)
+        }
+        
+data <- x$get()
+
+m <- solve(data) %*% data
+
+x$setInverse(m)
+
+m 
+ 
 }
